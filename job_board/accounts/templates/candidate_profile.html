@@ -1,0 +1,32 @@
+{% extends "base_layout.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header text-center">
+                    <h3>Candidate Profile</h3>
+                </div>
+                <div class="card-body">
+                    <h4>Username: {{ user.username }}</h4>
+                    <p><strong>First Name:</strong> {{ user.first_name }}</p>
+                    <p><strong>Last Name:</strong> {{ user.last_name }}</p>
+                    <p><strong>Email:</strong> {{ user.email }}</p>
+                    <p><strong>Bio:</strong> {{ user.candidate_profile.bio }}</p>
+                    {% if user.candidate_profile.resume %}
+    <p><strong>Resume:</strong> 
+        <a href="{{ user.candidate_profile.resume.url }}" target="_blank">Download Resume</a>
+    </p>
+{% else %}
+    <p>No resume uploaded.</p>
+{% endif %}
+                    <div class="mt-4">
+                        <a href="{% url 'accounts:update_profile' %}" class="btn btn-primary">Edit Profile</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

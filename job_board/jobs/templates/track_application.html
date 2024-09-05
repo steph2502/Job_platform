@@ -1,0 +1,39 @@
+{% extends "base_layout.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h3 class="text-center">My Applications</h3>
+    {% if applications %}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Job Title</th>
+                    <th>Cover Letter</th>
+                    <th>Application Status</th>
+                    <th>Applied On</th>
+                    <th>Resume</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for application in applications %}
+                    <tr>
+                        <td>{{ application.job.title }}</td>
+                        <td>{{ application.cover_letter|truncatewords:15 }}</td>
+                        <td>{{ application.get_status_display }}</td>
+                        <td>{{ application.applied_at }}</td>
+                        <td>
+                            {% if application.resume %}
+                                <a href="{{ application.resume.url }}" target="_blank">Download Resume</a>
+                            {% else %}
+                                No Resume Uploaded
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p class="text-center">You have not applied to any jobs yet.</p>
+    {% endif %}
+</div>
+{% endblock %}

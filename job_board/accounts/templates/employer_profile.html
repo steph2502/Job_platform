@@ -1,0 +1,25 @@
+{% extends "base_layout.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header text-center">
+                    <h3>Employer Profile</h3>
+                </div>
+                <div class="card-body">
+                    <h4>Username: {{ user.username }}</h4>
+                    <p><strong>Email:</strong> {{ user.email }}</p>
+                    <p><strong>Company Name:</strong> {{ user.employer_profile.company_name }}</p>
+                    <p><strong>Company Description:</strong> {{ user.employer_profile.company_description }}</p>
+                    <p><strong>Company URL:</strong> <a href="{{ user.employer_profile.company_website }}" target="_blank">{{ user.employer_profile.company_website }}</a></p>
+                    <div class="mt-4">
+                        <a href="{% url 'accounts:update_profile' %}" class="btn btn-primary">Edit Profile</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
